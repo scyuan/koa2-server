@@ -19,8 +19,8 @@ module.exports = (sequlize, DataTypes) => {
     charset: 'utf8mb4',
     comment: '目录表'
   })
-  Category.associate = function (models) {
-    models.category.hasMany(models.article);
-  };
+  // Category.associate = function (models) {
+  //   models.category.hasMany(models.article);
+  // };
   return Category;
 }

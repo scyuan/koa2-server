@@ -1,12 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Tag = sequelize.define('tag', {
-    t_id: {
-      type: DataTypes.INTEGER(64),
-      primaryKey: true,
-      autoIncrement: true,
-    },
     name: {
       type: DataTypes.STRING(128),
+      primaryKey: true,
     },
     description: {
       type: DataTypes.STRING(128),

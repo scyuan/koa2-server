@@ -28,13 +28,14 @@ module.exports = (sequlize, DataTypes) => {
       type: DataTypes.TEXT,
     },
     // 分类
-    // category: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: Category,
-    //     key: 'c_id',
-    //   }
-    // },
+    category: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+      // references: {
+      //   model: Category,
+      //   key: 'c_id',
+      // }
+    },
     // 标签
     tag: {
       type: DataTypes.STRING(128),
@@ -58,14 +59,17 @@ module.exports = (sequlize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     },
+    // 浏览量
     pvs: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    // 喜欢数
     ups: {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    // 评论数
     comments: {
       type: DataTypes.INTEGER,
       defaultValue: 0
@@ -78,11 +82,11 @@ module.exports = (sequlize, DataTypes) => {
     charset: 'utf8mb4',
     comment: '文章列表'
   })
-  Article.associate = function (models) {
-    models.article.belongsTo(models.category, {
-      onDelete: "CASCADE",
-      foreignKey: 'c_id'
-    })
-  }
+  // Article.associate = function (models) {
+  //   models.article.belongsTo(models.category, {
+  //     onDelete: "CASCADE",
+  //     foreignKey: 'c_id'
+  //   })
+  // }
   return Article;
 }

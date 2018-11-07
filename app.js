@@ -9,6 +9,7 @@ const index = require('./routes/index')
 const users = require('./routes/users')
 const config = require('./config/config');
 const db = require('./app/models/index');
+const glob = require('glob');
 
 // error handler
 onerror(app)
@@ -34,8 +35,7 @@ app.use(async (ctx, next) => {
 })
 
 // routes
-app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+glob.sync('./app/controllers/*.js').forEach(controller => require(controller)(app));
 
 // error-handling
 app.on('error', (err, ctx) => {
