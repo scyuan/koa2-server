@@ -5,16 +5,17 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-
 const index = require('./routes/index')
 const users = require('./routes/users')
+const config = require('./config/config');
+const db = require('./app/models/index');
 
 // error handler
 onerror(app)
 
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(logger())
@@ -41,4 +42,10 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
 
-module.exports = app
+async function start() {
+  await db.sequelize.sync();
+  let server = app.listen(config.port);
+  // server.timeout = config.app.timeout;
+  console.log('listen on port ' + config.port);
+}
+start();
