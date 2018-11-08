@@ -3,6 +3,7 @@ const db = require('../models');
 
 router.post('/api/addArticle', async (ctx) => {
   const formData = ctx.request.body;
+  formData.a_id = new Date().getTime();
   try {
     await db.article.create({
       ...formData
@@ -12,6 +13,7 @@ router.post('/api/addArticle', async (ctx) => {
       message: 'ok',
     }
   } catch (error) {
+    console.log(error);
     ctx.body = {
       code: -1,
       message: error.message,

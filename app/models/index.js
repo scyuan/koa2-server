@@ -6,6 +6,7 @@ const db = {};
 
 const sequelize = new Sequelize(config.db, {
   logging: true,
+  timezone: '+08:00',
   define: {
     freezeTableName: true,
     timestamps: true,

@@ -1,9 +1,8 @@
 module.exports = (sequlize, DataTypes) => {
   const Article = sequlize.define('article', {
     a_id: {
-      type: DataTypes.INTEGER(64),
+      type: DataTypes.STRING(64),
       primaryKey: true,
-      autoIncrement: true,
     },
     // 文章标题
     title: {
@@ -13,6 +12,7 @@ module.exports = (sequlize, DataTypes) => {
     // 文章关键字
     keywords: {
       type: DataTypes.STRING(64),
+      defaultValue: ''
     },
     // 文章摘要
     description: {
@@ -22,10 +22,12 @@ module.exports = (sequlize, DataTypes) => {
     // 文章原始内容
     content: {
       type: DataTypes.TEXT,
+      defaultValue: ''
     },
     // 文章渲染内容
     renderedContent: {
       type: DataTypes.TEXT,
+      defaultValue: ''
     },
     // 分类
     category: {
@@ -44,7 +46,7 @@ module.exports = (sequlize, DataTypes) => {
     thumb: {
       type: DataTypes.STRING(256)
     },
-    // 来源
+    // 来源 0 原创 | 1 混撰 | 2 转载
     source: {
       type: DataTypes.INTEGER,
     },
@@ -52,8 +54,10 @@ module.exports = (sequlize, DataTypes) => {
     sourceUrl: {
       type: DataTypes.STRING(256)
     },
+    // 文章状态 -1 已删除 | 0 发布 | 1 草稿
     state: {
       type: DataTypes.INTEGER,
+      defaultValue: 2
     },
     publishedAt: {
       type: DataTypes.DATE,
