@@ -31,12 +31,8 @@ module.exports = (sequlize, DataTypes) => {
     },
     // 分类
     category: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       defaultValue: 1
-      // references: {
-      //   model: Category,
-      //   key: 'c_id',
-      // }
     },
     // 标签
     tag: {
@@ -48,7 +44,7 @@ module.exports = (sequlize, DataTypes) => {
     },
     // 来源 0 原创 | 1 混撰 | 2 转载
     source: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     // 原文链接
     sourceUrl: {
@@ -56,8 +52,8 @@ module.exports = (sequlize, DataTypes) => {
     },
     // 文章状态 -1 已删除 | 0 发布 | 1 草稿
     state: {
-      type: DataTypes.INTEGER,
-      defaultValue: 2
+      type: DataTypes.STRING,
+      defaultValue: '0'
     },
     publishedAt: {
       type: DataTypes.DATE,

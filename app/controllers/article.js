@@ -48,8 +48,6 @@ router.post('/api/getArticle', async (ctx) => {
 
 router.post('/api/getArticleList', async (ctx) => {
   const formData = ctx.request.body;
-  console.log(formData.pagination);
-  const pagination = JSON.parse(formData.pagination + '');
 
   let sql = 'select * from category right join article on category.c_id = article.category where 1=1 ';
   let query = '';
@@ -62,7 +60,7 @@ router.post('/api/getArticleList', async (ctx) => {
     query = query + `and ${key} = ${formData[key]} `
   })
 
-  sql = sql + query + ` limit ${pagination.pageSize} offset ${(pagination.pageNumber - 1 )*pagination.pageSize}`;
+  sql = sql + query;
 
   try {
     let result = await db.sequelize.query(sql, {
@@ -103,9 +101,10 @@ router.post('/api/updateArticle', async (ctx) => {
 
   let query = '';
 
+  console.log(formData);
+
   Object.keys(formData).forEach(key => {
-    if (key == 'a_id') return;
-    query = ` ${key} = '${formData[key]}' ,`
+    if (key != 'a_id') query = query + ` ${key} = '${formData[key]}' ,`
   })
 
   query = query.substring(0, query.length - 1);
