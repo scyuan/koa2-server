@@ -31,7 +31,7 @@ module.exports = (sequlize, DataTypes) => {
     },
     // 分类
     category: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       defaultValue: 1
     },
     // 标签
