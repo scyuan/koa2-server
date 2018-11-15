@@ -53,7 +53,7 @@ module.exports = (sequlize, DataTypes) => {
     // 文章状态 -1 已删除 | 0 发布 | 1 草稿
     state: {
       type: DataTypes.STRING,
-      defaultValue: '0'
+      defaultValue: '1'
     },
     publishedAt: {
       type: DataTypes.DATE,
